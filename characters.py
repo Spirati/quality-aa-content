@@ -29,7 +29,7 @@ def generate_character_list(use_stored: bool) -> dict: # string key for characte
 
     if use_stored:
         try:
-            with open("character_info.json") as info:
+            with open("conf/character_info.json") as info:
                 final_character_list = json.load(info)
         except:
             generate_character_list(False)
@@ -51,10 +51,7 @@ def generate_character_list(use_stored: bool) -> dict: # string key for characte
 
             final_character_list[character.replace("_"," ")] = list(map(lambda tag: AA_WIKI_URL + tag["href"], mugshot_tab.find_all("a", class_="image")))
 
-        with open("character_info.json", "w") as info:
+        with open("conf/character_info.json", "w") as info:
             json.dump(final_character_list, info)
     
     return final_character_list
-    
-print(generate_character_list(True))
-
