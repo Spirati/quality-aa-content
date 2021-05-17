@@ -1,6 +1,5 @@
 import random
 import re
-from PIL.Image import Image
 from typing import Union, Dict, List
 
 quotes = {
@@ -176,7 +175,7 @@ templates = {
     "mulaney": mulaney
 }
 
-def random_template(category: str, character_list: Dict[str, List[str]]) -> Union[str, Image]:
+def random_template(category: str, character_list: Dict[str, List[str]]) -> str:
     if category not in templates:
         category = "quotes"
     if type(templates[category]) == dict:
