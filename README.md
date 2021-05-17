@@ -2,7 +2,7 @@
 Do you want to help make this god awful project even worse? Here's a handy guide as to how to do that!
 ## Adding quotes
 You can do this in one of two ways, depending on your expertise.
-1. Send them to me personally over [https://twitter.com/_lynnux](Twitter) for me to add them manually. This is probably what you want to do.
+1. Send them to me personally over [Twitter](https://twitter.com/_lynnux) for me to add them manually. This is probably what you want to do.
 2. Add them in the source code and create a pull request; if you have a little Python experience, this is easier for me. Basically, lines are formatted in `meme_templates.py` as follows:
     + Character names are replaced with numbers in braces corresponding to their order of appearance in the line. **Python is zero-indexed, so the first character is {0}, the second is {1}, etc.**
     + Personal pronouns of characters are all replaced with they/them pronouns. *(Note: This isn't ideal, but there's no easy way to address it. Feel free to create an issue or DM me if you have ideas.)*
@@ -18,6 +18,6 @@ You can do this in one of two ways, depending on your expertise.
 
 ## Modifying the code itself
 ### Basic setup
-You'll need [https://docs.conda.io/en/latest/](Conda) for this. Clone the repository and run `conda env create -f environment.yml`. The environment is named `misery`, so once the environment is created, run `conda activate misery` to enter the environment. When you're done, run `conda deactivate misery`.
+You'll need [Conda](https://docs.conda.io/en/latest/) for this. Clone the repository and run `conda env create -f environment.yml`. The environment is named `misery`, so once the environment is created, run `conda activate misery` to enter the environment. When you're done, run `conda deactivate misery`.
 ### Running the webserver
 Go to the root of the repository and run `flask run` for a dev server.
