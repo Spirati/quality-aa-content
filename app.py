@@ -28,17 +28,26 @@ def create_app():
 
         <p>Try it out!</p>
         <ul>
-            <li><a href="/quotes?num=5">"Incorrect" quotes</a></li>
-            <li><a href="/mulaney?num=5">AA characters as John Mulaney quotes</a></li>
-            <li><a href="/image">Classic, time-"honored" image macros</a></li>
+            <li><a href="/generate/quotes?num=5">"Incorrect" quotes</a></li>
+            <li><a href="/generate/mulaney?num=5">AA characters as John Mulaney quotes</a></li>
+            <li><a href="/generate/image">Classic, time-"honored" image macros</a></li>
         </ul>
         <hr/>
+        <a href="/characters">View the full character list used by the generator</a>
         <footer>
             <p><i>Written and maintained by <a href="https://lynnux.org">Lynnux</a>. View the <a href="https://github.com/Spirati/quality-aa-content">source code</a> or talk to me on <a href="https://twitter.com/_lynnux">Twitter</a>!<i></p>
         </footer>
         """
 
-    @app.route("/<category>")
+
+    @app.route("/characters")
+    def character_list():
+        HOME_LINK = ["<a href=\"/\">Go home</a>"]
+        character_names = list(sorted(list(characters.keys())))
+        character_tag = "<div><ul>" + "\n".join([f"<li>{name}</li>" for name in character_names]) + "</ul></div>"
+
+        return "<hr/>".join(HOME_LINK + [f"<i>{len(character_names)}</li> characters in use</i><br/>", character_tag])
+    @app.route("/generate/<category>")
     def quote_template(category: str):
 
         HOME_LINK = ["<a href=\"/\">Go home</a> | <a href=\"#\" onclick=\"history.go(0)\">Generate another</a>"]
