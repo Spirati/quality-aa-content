@@ -15,5 +15,15 @@
         ],
         "size": 156,
         "min_mugshots": 6
+    },
+    "netflix.png": {
+        "coords": [
+            [60, 152],
+            [200, 152],
+            [344, 152],
+            [482, 152]
+        ],
+        "size": 123,
+        "min_mugshots": 4
     }
 }

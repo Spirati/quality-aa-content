@@ -30,6 +30,7 @@ def create_app():
         <ul>
             <li><a href="/quotes?num=5">"Incorrect" quotes</a></li>
             <li><a href="/mulaney?num=5">AA characters as John Mulaney quotes</a></li>
+            <li><a href="/image">Classic, time-"honored" image macros</a></li>
         </ul>
         <hr/>
         <footer>
@@ -40,7 +41,7 @@ def create_app():
     @app.route("/<category>")
     def quote_template(category: str):
 
-        HOME_LINK = ["<a href=\"/\">Go home</a>"]
+        HOME_LINK = ["<a href=\"/\">Go home</a> | <a href=\"#\" onclick=\"history.go(0)\">Generate another</a>"]
 
         if category.lower() in ("image",):
             image = images.generate_image_macro(characters)
