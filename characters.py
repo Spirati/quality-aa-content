@@ -45,9 +45,12 @@ def generate_character_list(use_stored: bool) -> dict: # string key for characte
             if character_image_gallery_request.status_code == 404: continue
 
             character_image_gallery = BeautifulSoup(character_image_gallery_request.text, features="html5lib")
-            mugshot_tab = character_image_gallery.find("div",class_="tabbertab",title="Mugshots")
+            tabs = character_image_gallery.find_all("div",class_="tabbertab")
+            mugshot_tabs = list(filter(lambda tag: "MUGSHOT" in tag["title"].upper(), tabs))
             
-            if mugshot_tab is None: continue
+            if len(tabs) == 0 or len(mugshot_tabs) == 0: continue
+
+            mugshot_tab = mugshot_tabs[0]
 
             mugshot_image_tags = mugshot_tab.find_all("a", class_="image")
             mugshot_image_links = []
@@ -63,7 +66,7 @@ def generate_character_list(use_stored: bool) -> dict: # string key for characte
 
             final_character_list[character.replace("_"," ")] = mugshot_image_links
 
-        with open("conf/character_info.json", "w") as info:
-            json.dump(final_character_list, info)
+            with open("conf/character_info.json", "w") as info:
+                json.dump(final_character_list, info)
     
     return final_character_list
