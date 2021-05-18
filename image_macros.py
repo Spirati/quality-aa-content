@@ -22,6 +22,7 @@ def pick_random_mugshot(mugshot_urls: List[str]) -> Image.Image:
             try:
                 image_download = requests.get(mugshot_url, timeout=5)
             except requests.exceptions.ReadTimeout:
+                mugshot_url = random.choice(mugshot_urls)
                 image_download = None
                 continue
             break
