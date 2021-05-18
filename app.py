@@ -38,13 +38,8 @@ def create_app():
 
         if category == "image":
             image = images.generate_image_macro(characters)
-            with BytesIO() as output:
-                image.save(output, format="PNG")
-                image_bytes = output.getvalue()
-            
-            encoded = base64.b64encode(image_bytes).decode()
 
-            generated = [encoded]
+            generated = [image]
         else:
             num_quotes = int(request.args.get('num', 1))
             generated = [templates.random_template(category, characters) for _ in range(num_quotes)]

@@ -5,7 +5,7 @@ from io import BytesIO
 import requests
 import random
 import json
-from bs4 import BeautifulSoup
+import base64
 
 Coords = List[int]
 
@@ -78,5 +78,11 @@ def generate_image_macro(character_info: Dict[str, List[str]]):
             tuple(template_mugshot_coords[i])
         )
 
-    return template_image
+    with BytesIO() as output:
+        template_image.save(output, format="PNG")
+        image_bytes = output.getvalue()
+
+        encoded = base64.b64encode(image_bytes).decode()
+
+    return encoded
 
