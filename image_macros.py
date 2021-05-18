@@ -30,7 +30,7 @@ def pick_random_mugshot(mugshot_urls: List[str]) -> Image.Image:
             return
         
         if not image_download.ok:
-            print(image_download.ok, image_download.content)
+            return None
         
         mugshot = Image.open(BytesIO(image_download.content))
         if mugshot.size == (300, 171): # "image not found"
