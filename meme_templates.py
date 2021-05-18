@@ -194,5 +194,5 @@ def random_template(category: str, character_list: Dict[str, List[str]]) -> str:
 
         character_names = [random.choice(list(character_list.keys())) for _ in range(num_characters)]
 
-        return template_text.format(*character_names).replace("\n","<br/>")
+        return template_text.format(*character_names)
     
