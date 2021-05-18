@@ -32,7 +32,7 @@ def generate_character_list(use_stored: bool) -> dict: # string key for characte
             with open("conf/character_info.json") as info:
                 final_character_list = json.load(info)
         except:
-            generate_character_list(False)
+            return generate_character_list(False)
     
     else:
         initial_character_list()

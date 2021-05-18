@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+
+    <title>{% block title %}{% endblock %} - Quality AA Shitposts</title>
+</head>
+
+<body>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        <p><i>
+            Written and maintained by <a href="https://lynnux.org">Lynnux</a>. 
+            View the <a href="https://github.com/Spirati/quality-aa-content">source code</a> 
+            or talk to me on <a href="https://twitter.com/_lynnux">Twitter</a>!
+        </i></p>
+    </footer>
+</body>
+
+</html>

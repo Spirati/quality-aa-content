@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}
+    {% if title %}
+        {{ title }}
+    {% else %}
+        Your Very Own Shitpost
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<nav>
+    <a href="/">Go home</a> | <a href="#" onclick="history.go(0)">Generate another</a>
+</nav>
+<hr />
+{% if category == "characters" %}
+<i>{{ gen|length }} characters in use</i>
+<br/>
+<ul>
+    {% for item in gen %}
+    <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+    {% for item in gen %}
+        {% if category == "image"  %}
+            <img src="data:image/png;base64,{{ item }}"/>
+        {% else %}
+            {{ item }}
+        {% endif %}
+        <hr/>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
