@@ -49,7 +49,19 @@ def generate_character_list(use_stored: bool) -> dict: # string key for characte
             
             if mugshot_tab is None: continue
 
-            final_character_list[character.replace("_"," ")] = list(map(lambda tag: AA_WIKI_URL + tag["href"], mugshot_tab.find_all("a", class_="image")))
+            mugshot_image_tags = mugshot_tab.find_all("a", class_="image")
+            mugshot_image_links = []
+            for tag in mugshot_image_tags:
+                img = tag.find("img")
+                if "data-src" in img:
+                    img_url = img["data-src"]
+                else:
+                    img_url = img["src"]
+                mugshot_image_links.append(
+                    img_url.split("/revision/latest")[0] + "/revision/latest"
+                )
+
+            final_character_list[character.replace("_"," ")] = mugshot_image_links
 
         with open("conf/character_info.json", "w") as info:
             json.dump(final_character_list, info)

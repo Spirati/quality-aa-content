@@ -1,4 +1,5 @@
 .vscode/
 __pycache__/
+img/cache/
 character_info.json
 start_server.sh

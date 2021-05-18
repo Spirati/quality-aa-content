@@ -1,8 +1,11 @@
 import json
+import base64
+from io import BytesIO
 from flask import Flask, request
 
 import characters as char
 import meme_templates as templates
+import image_macros as images
 
 def load_config() -> dict:
     with open("conf/config.json") as config:
@@ -36,7 +39,22 @@ def create_app():
 
     @app.route("/<category>")
     def quote_template(category: str):
+
+        HOME_LINK = ["<a href=\"/\">Go home</a>"]
+
+        if category.lower() in ("image",):
+            image = images.generate_image_macro(characters)
+            with BytesIO() as output:
+                image.save(output, format="PNG")
+                image_bytes = output.getvalue()
+            
+            encoded = base64.b64encode(image_bytes).decode()
+            data_uri = 'data:image/png;base64,{}'.format(encoded)
+
+            return "<hr/>".join(HOME_LINK + [f"<img src=\"{data_uri}\"/>"])
+
+            
         num_quotes = int(request.args.get('num', 1))
-        return "<hr/>".join(["<a href=\"/\">Go home</a>"] + [templates.random_template(category, characters) for _ in range(num_quotes)])
+        return "<hr/>".join(HOME_LINK + [templates.random_template(category, characters) for _ in range(num_quotes)])
 
     return app
