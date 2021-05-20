@@ -3,6 +3,7 @@ channels:
   - defaults
 dependencies:
   - beautifulsoup4=4.9.3
+  - colorama=0.4.4
   - flask=1.1.2
   - html5lib=1.1
   - pillow=8.2.0
